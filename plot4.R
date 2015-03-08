@@ -1,0 +1,26 @@
+source("util.R")
+datetime <- quizData20070201_02$Date
+voltage <- as.numeric(as.character(quizData20070201_02$Voltage ))
+react_power <- as.numeric(as.character(quizData20070201_02$Global_reactive_power ))
+sub_met_1 <- as.numeric(as.character(quizData20070201_02$Sub_metering_1 ))
+sub_met_2 <- as.numeric(as.character(quizData20070201_02$Sub_metering_2 ))
+sub_met_3 <- as.numeric(as.character(quizData20070201_02$Sub_metering_3 ))
+gap <- as.numeric(as.character(quizData20070201_02$Global_active_power ))
+
+png("plot4.png", width = 480, height = 480)   
+par(mfrow = c(2,2))
+with(quizData20070201_02, {
+        #(1.1)
+        plot(datetime, gap, type ="l",  ylab = "Global Active Power", xlab=NA)
+        #(1.2)
+        plot(datetime, voltage, type ="l",  ylab = "Voltage")
+        #(2.1)
+        plot(datetime, sub_met_1, type ="l",  col = "black", ylab = "Energy sub metering", xlab=NA)
+        lines(datetime, sub_met_2, type ="l",  col = "red")
+        lines(datetime, sub_met_3, type ="l",  col = "blue")
+        legend("topright",lty=c(1,1),  col = c("black", "blue", "red"), legend = c("Sub_metrting_1","Sub_metrting_2", "Sub_metrting_3"),bty = "n")
+        #(2.2)
+        plot(datetime, react_power, type ="l",  ylab = "Global_reactive_power")
+        
+}) 
+dev.off()
