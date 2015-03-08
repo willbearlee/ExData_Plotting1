@@ -1,0 +1,5 @@
+util.R contain the generic function. As read Data
+plot*.R: Source code for each graphics
+plot*.png: Result
+How to Run: In R console, run "source plot1.r" to generate the graphics. 
+
